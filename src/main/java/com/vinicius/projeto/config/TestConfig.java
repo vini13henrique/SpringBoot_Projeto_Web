@@ -10,10 +10,12 @@ import org.springframework.context.annotation.Profile;
 
 import com.vinicius.projeto.entities.Category;
 import com.vinicius.projeto.entities.Order;
+import com.vinicius.projeto.entities.Product;
 import com.vinicius.projeto.entities.User;
 import com.vinicius.projeto.entities.enums.OrderStatus;
 import com.vinicius.projeto.repositories.CategoryRepository;
 import com.vinicius.projeto.repositories.OrderRepository;
+import com.vinicius.projeto.repositories.ProductRepository;
 import com.vinicius.projeto.repositories.UserRepository;
 
 @Configuration
@@ -29,8 +31,17 @@ public class TestConfig implements CommandLineRunner {
 	@Autowired
 	private CategoryRepository categoryRepository;
 
+	@Autowired
+	private ProductRepository productRepository;
+
 	@Override
 	public void run(String... args) throws Exception {
+
+		Product p1 = new Product(null, "The Lord of the Rings", "Lorem ipsum dolor sit amet, consectetur.", 90.5, "");
+		Product p2 = new Product(null, "Smart TV", "Nulla eu imperdiet purus. Maecenas ante.", 2190.0, "");
+		Product p3 = new Product(null, "Macbook Pro", "Nam eleifend maximus tortor, at mollis.", 1250.0, "");
+		Product p4 = new Product(null, "PC Gamer", "Donec aliquet odio ac rhoncus cursus.", 1200.0, "");
+		Product p5 = new Product(null, "Rails for Dummies", "Cras fringilla convallis sem vel faucibus.", 100.99, "");
 
 		Category produto1 = new Category(null, "produto1");
 		Category produto2 = new Category(null, "produto2");
@@ -44,7 +55,7 @@ public class TestConfig implements CommandLineRunner {
 
 		userRepository.saveAll(Arrays.asList(user1, user2));
 		orderRepository.saveAll(Arrays.asList(o1, o2, o3));
-		categoryRepository.saveAll(Arrays.asList(produto1,produto2));
-
+		categoryRepository.saveAll(Arrays.asList(produto1, produto2));
+		productRepository.saveAll(Arrays.asList(p1, p2, p3, p4, p5));
 	}
 }
